@@ -13,12 +13,14 @@ call vundle#begin()
  Plugin 'tpope/vim-commentary'
  Plugin 'altercation/vim-colors-solarized'
  Plugin 'tpope/vim-surround'
+ Plugin 'bling/vim-airline'
+ Plugin 'airblade/vim-gitgutter'
+ Plugin 'SirVer/ultisnips'
+ Plugin 'honza/vim-snippets'
+ Plugin 'mattn/emmet-vim'
 call vundle#end() 
 
 filetype plugin indent on 
-
-
-"execute pathogen#infect()
 
 
 
@@ -64,7 +66,7 @@ colorscheme zenburn
 set background=dark
 set t_Co=256
 
-
+highlight Comment ctermfg=LightGray
 
 
 set foldmethod=syntax
@@ -80,8 +82,44 @@ let vimsyn_folding='af'       " Vim script
 let xml_syntax_folding=1      " XML
 
 
-
-
-
 let mapleader = ","
 
+map 0 ^
+
+"from josemota dotfiles
+" Normal mode mappings {{{
+  nnoremap <leader>b :CtrlPBuffer<CR>
+  " nnoremap <C-s> :w<CR>
+  " nnoremap <leader>ev :vs $MYVIMRC<CR>
+  " nnoremap <leader>gs :Gstatus<CR><C-W>15+
+  nnoremap <leader>m :NERDTreeToggle<CR>
+  " nnoremap <leader>rs :!clear;bundle exec rake<CR>
+  " nnoremap <leader>a :Ack 
+  " nnoremap <leader>d :bd<CR> 
+  nnoremap <leader>w :w<CR>
+  " nnoremap <leader><cr> :noh<CR>
+  " nnoremap <leader>l :ls<CR>:b
+  nnoremap <leader>t :CtrlP<CR>
+  " nnoremap n nzz
+  " nnoremap N Nzz
+  nnoremap <leader>s :source ~/.vimrc<CR>
+  nnoremap <leader>/ gcc
+" }}}
+
+
+
+" Plugin Config {{{
+
+  " UltiSnips Config
+    let g:UltiSnipsExpandTrigger="<tab>"
+    "let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
+
+  "emmet
+    let g:user_emmet_leader_key='<C-Z>'
+
+
+
+" }}}
