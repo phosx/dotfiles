@@ -62,11 +62,23 @@ set cursorline
 "let g:solarized_termtrans = 1
 "colorscheme solarized
 
-colorscheme zenburn
-set background=dark
+"colorscheme zenburn
+colorscheme molokai
+"set background=dark
 set t_Co=256
 
-highlight Comment ctermfg=LightGray
+let g:molokai_original = 1
+let g:rehash256 = 1
+
+"highlight Comment ctermfg=LightGray
+highlight Normal ctermbg=NONE " Set bg to terminal default
+highlight nonText ctermbg=NONE " Set bg to terminal default
+
+
+
+
+
+
 
 
 set foldmethod=syntax
@@ -104,6 +116,7 @@ map 0 ^
   " nnoremap N Nzz
   nnoremap <leader>s :source ~/.vimrc<CR>
   nnoremap <leader>/ gcc
+  nnoremap <leader>p :r!pbpaste<cr>
 " }}}
 
 
