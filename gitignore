@@ -1,0 +1,4 @@
+# Global .gitignore File
+
+.DStore
+.swp
