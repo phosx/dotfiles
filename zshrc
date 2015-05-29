@@ -1,5 +1,12 @@
-# ZSHRC - for my mac. 
-# ToDo - seperate mac func & general 
+export ZSH=/Users/pat/.oh-my-zsh
+ZSH_THEME="wezm"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="dd/mm/yyyy"
+plugins=(git brew)
+
+
+source $ZSH/oh-my-zsh.sh
 
 
 alias vimrc="vim ~/dotfiles/vimrc"
@@ -16,6 +23,7 @@ alias ....="cd ../../../"
 alias dt="cd ~/Desktop"
 alias phos="cd ~/Desktop/phosx"
 alias rex="cd ~/Desktop/SGS/Ruby/exercises"
+alias rai="cd ~/Desktop/SGS/Rails/"
 
 mkcd() {
   mkdir $1 && cd $1 
@@ -23,14 +31,18 @@ mkcd() {
 
 
 # git {{{
-alias gac="git add -A && git commit -m"
-alias ga="git add -A"
+alias g="git"
 alias gs="git status"
+alias ga="git add"
+alias gac="git add -A && git commit -m"
+alias gc="git checkout"
+alias gb="git branch"
+alias gps="git push"
+alias gpl="git pull"
 
 alias push="git push origin master"
 alias pull="git pull origin master"
 
-alias gitlog1="git log --oneline --graph --decorate --all"
 alias gl="git log --oneline --graph --decorate --all"
 # }}}
 
@@ -71,24 +83,60 @@ alias apache.conf="sudo vim /private/etc/apache2/httpd.conf"
 
 # }}}
 
+alias killrs="rm tmp/pids/server.pid && kill -9 $(lsof -i tcp:3000 -t)"
 
-# Path info - Needs tidying {{{
-export PATH="$(brew --prefix homebrew/php/php55)/sbin:$PATH"
+alias fuck='sudo $(history -p \!\!)'
+
+# Path info {{{
+
+#export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:$(brew --prefix homebrew/php/php55)/sbin"
+
 PHP_AUTOCONF="/usr/local/bin/autoconf"
-
-
-
 export SASS_LIBSASS_PATH=/usr/local/Cellar/libsass/1.0.1
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
-
 
 export WORKON_HOME="$HOME/.virtualenvs"
 source /usr/local/bin/virtualenvwrapper.sh
 
-source ~/.profile
+# }}}
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-export PATH=/usr/local/sbin:$PATH
+# RBENV {{{
+
+# To use Homebrew's directories rather than ~/.rbenv add to your profile:
+# export RBENV_ROOT=/usr/local/var/rbenv
+
+# To enable shims and autocompletion add to your profile:
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+eval export PATH="/Users/pat/.rbenv/shims:${PATH}"
+source "/usr/local/Cellar/rbenv/0.4.0/completions/rbenv.zsh"
+rbenv rehash 2>/dev/null
+rbenv() {
+  typeset command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval `rbenv "sh-$command" "$@"`;;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
+
+
+
+
+
+
+
+
+
 
 # }}}
+
+
